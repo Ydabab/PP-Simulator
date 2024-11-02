@@ -10,30 +10,14 @@ public abstract class Creature
         get => name;
         init
         {
-            name = value.Trim();
-            if (name.Length < 3)
-            {
-                name = name.PadRight(3, '#');
-            }
-            if (name.Length > 25)
-            {
-                name = name.Substring(0, 25);
-                name = name.Trim();
-                if (name.Length < 3)
-                {
-                    name = name.PadRight(3, '#');
-                }
-            }
-            name = char.ToUpper(name[0]) + name.Substring(1);
+            name = Validator.Shortener(value, 3, 25, '#');
+            name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
         }
     }
     public int Level
     {
         get => level;
-        init
-        {
-            level = value < 1 ? 1 : value > 10 ? 10 : value;
-        }
+        init => level = Validator.Limiter(value, 1, 10);
     }
     public abstract int Power { get; }
     public Creature() { }
@@ -61,14 +45,15 @@ public abstract class Creature
         var parsedDirections = DirectionParser.Parse(directions);
         Go(parsedDirections);
     }
-    public string Info => $"{Name} [{Level}]";
+    public abstract string Info { get; }
+    public override string ToString() => $"{GetType().Name.ToUpper()}: {Info}";
 }
 public class Elf : Creature
 {
     private int agility = 1;
     private int SingCounter = 0;
 
-    public int Agility { get => agility; init => agility = value < 0 ? 0 : value > 10 ? 10 : value; }
+    public int Agility { get => agility; init => agility = Validator.Limiter(value, 0, 10); }
     public override int Power => 8 * Level + 2 * Agility;
     public void Sing()
     {
@@ -88,6 +73,7 @@ public class Elf : Creature
     {
         Agility = agility;
     }
+    public override string Info => $"{Name} [{Level}][{Agility}]";
 }
 
 public class Orc : Creature
@@ -95,7 +81,7 @@ public class Orc : Creature
     private int rage = 1;
     private int HuntCounter = 0;
 
-    public int Rage { get => rage; init => rage = value < 0 ? 0 : value > 10 ? 10 : value; }
+    public int Rage { get => rage; init => rage = Validator.Limiter(value, 0, 10); }
     public override int Power => 7 * Level + 3 * Rage;
     public void Hunt()
     {
@@ -114,4 +100,5 @@ public class Orc : Creature
     {
         Rage = rage;
     }
+    public override string Info => $"{Name} [{Level}][{Rage}]";
 }
