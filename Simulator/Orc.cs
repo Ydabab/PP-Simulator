@@ -3,15 +3,15 @@
 public class Orc : Creature
 {
     private int rage = 1;
-    private int HuntCounter = 0;
+    private int huntCounter = 0;
 
     public int Rage { get => rage; init => rage = Validator.Limiter(value, 0, 10); }
     public override int Power => 7 * Level + 3 * Rage;
     public void Hunt()
     {
-        HuntCounter++;
+        huntCounter++;
         Console.WriteLine($"{Name} is hunting.");
-        if (HuntCounter % 2 == 0)
+        if (huntCounter % 2 == 0)
         {
             if (rage < 10)
             {
