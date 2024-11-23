@@ -1,6 +1,7 @@
 ﻿using Simulator;
 using Simulator.Maps;
 using Xunit;
+namespace TestSimulator;
 
 public class SmallSquareMapTests
 {
@@ -8,7 +9,7 @@ public class SmallSquareMapTests
     public void Constructor_ValidSize_ShouldSetSize()
     {
         var map = new SmallSquareMap(10);
-        Assert.Equal(10, map.Size);
+        Assert.Equal(10, map.SizeX);
     }
 
     [Theory]
@@ -41,11 +42,11 @@ public class SmallSquareMapTests
         Assert.Equal(new Point(expectedX, expectedY), nextPoint);
     }
     [Theory]
-    [InlineData(9, 0, Direction.Up, 9, 0)]    
+    [InlineData(9, 0, Direction.Up, 9, 0)]
     [InlineData(9, 0, Direction.Left, 8, 1)]
-    [InlineData(0, 0, Direction.Left, 0, 0)] 
-    [InlineData(5, 5, Direction.Right, 6, 4)] 
-    [InlineData(5, 5, Direction.Down, 4, 4)]  
+    [InlineData(0, 0, Direction.Left, 0, 0)]
+    [InlineData(5, 5, Direction.Right, 6, 4)]
+    [InlineData(5, 5, Direction.Down, 4, 4)]
 
     public void NextDiagonal_ShouldReturnCorrectNextPoint(int x, int y, Direction direction, int expectedX, int expectedY)
     {

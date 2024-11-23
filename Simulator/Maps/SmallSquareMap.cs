@@ -1,6 +1,6 @@
 ﻿namespace Simulator.Maps;
 
-public class SmallSquareMap : Map
+public class SmallSquareMap : SmallMap
 {
     public SmallSquareMap(int size) : base(size, size)
     {
