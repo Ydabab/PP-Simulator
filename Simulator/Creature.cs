@@ -24,7 +24,11 @@ public abstract class Creature
     }
     public abstract int Power { get; }
 
-    public void InitMapAndPosition(Map map, Point position) { }
+    public void InitMapAndPosition(Map map, Point position) 
+    {
+        Map = map;
+        Position = position;
+    }
     public Creature() { }
     public Creature(string name, int level = 1)
     {
