@@ -117,6 +117,4 @@ public class Simulation
             Finished = true;
         }
     }
-
-
 }
