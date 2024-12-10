@@ -1,4 +1,5 @@
-﻿using Simulator.Maps;
+﻿using SimConsole;
+using Simulator.Maps;
 namespace Simulator;
 public class Simulation
 {
@@ -113,5 +114,10 @@ public class Simulation
         {
             Finished = true;
         }
+    }
+    public SimulationState GetState()
+    {
+        var mappableStates = IMappables.Select(m => new MappableState(m, m.Position)).ToList();
+        return new SimulationState(_currentMoveIndex, mappableStates);
     }
 }
