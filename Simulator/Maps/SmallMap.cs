@@ -11,5 +11,4 @@ public abstract class SmallMap : Map
 
         _fields = new List<IMappable>?[sizeX, sizeY];
     }
-    protected override List<IMappable>?[,] Fields => _fields;
 }
