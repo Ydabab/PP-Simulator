@@ -16,8 +16,7 @@ class Program
 
         Simulation simulation = new(map, mappables, points, moves);
         MapVisualizer mapVisualizer = new(simulation.Map);
-        SimulationHistory history = new(simulation);
-        LogVisualizer logVisualizer = new(history);
+
         //while (!simulation.Finished)
         //{
         //    mapVisualizer.Draw();
@@ -26,8 +25,12 @@ class Program
         //    simulation.Turn();
         //    Console.Clear();
         //}
+
         //mapVisualizer.Draw();
         //Console.WriteLine("\nSimulation finished!");
+
+        SimulationHistory history = new(simulation);
+        LogVisualizer logVisualizer = new(history);
         logVisualizer.Draw(4);
         Console.ReadKey(true);
         logVisualizer.Draw(9);

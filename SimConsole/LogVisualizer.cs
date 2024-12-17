@@ -23,7 +23,7 @@ public class LogVisualizer
         DrawMap(log.Symbols, _history.SizeX, _history.SizeY);
     }
 
-    private void DrawMap(Dictionary<Point, char> symbols, int sizeX, int sizeY)
+    private void DrawMap(Dictionary<Point, List<char>> symbols, int sizeX, int sizeY)
     {
         Console.Write(Box.TopLeft);
         for (int x = 0; x < sizeX; x++)
@@ -38,9 +38,16 @@ public class LogVisualizer
             for (int x = 0; x < sizeX; x++)
             {
                 var point = new Point(x, y);
-                if (symbols.TryGetValue(point, out char symbol))
+                if (symbols.TryGetValue(point, out List<char> symbolList))
                 {
-                    Console.Write(symbol);
+                    if(symbolList.Count > 1)
+                    {
+                        Console.Write('X');
+                    }
+                    else
+                    {
+                        Console.Write(symbolList[0]);
+                    }
                 }
                 else
                 {

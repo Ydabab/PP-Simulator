@@ -23,10 +23,14 @@ public class SimulationHistory
         {
             _simulation.Turn();
 
-            var symbols = new Dictionary<Point, char>();
+            var symbols = new Dictionary<Point, List<char>>();
             foreach (var mappable in _simulation.IMappables)
             {
-                symbols[mappable.Position] = mappable.Symbol;
+                if(!symbols.ContainsKey(mappable.Position))
+                {
+                    symbols[mappable.Position] = new List<char>();
+                }
+                symbols[mappable.Position].Add(mappable.Symbol);
             }
 
             var log = new SimulationTurnLog

@@ -91,6 +91,11 @@ public class Simulation
             map.Add(mappable, position);
         }
     }
+
+    public Simulation()
+    {
+    }
+
     /// <summary>
     /// Makes one move of current mappable in current direction.
     /// Throw error if simulation is finished.
