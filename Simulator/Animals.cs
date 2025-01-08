@@ -1,5 +1,6 @@
 ﻿using Simulator.Maps;
 using System.Reflection.Emit;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
 
 namespace Simulator;
@@ -20,8 +21,8 @@ public class Animals : IMappable
         }
     }
     public int Size { get; set; } = 3;
-    public virtual string Info => $"{Description} <{Size}>";
-    public virtual char Symbol => 'A';
+    [JsonIgnore] public virtual string Info => $"{Description} <{Size}>";
+    [JsonIgnore] public virtual char Symbol => 'A';
     public Animals() { }
     public Animals(string description, int size)
     {

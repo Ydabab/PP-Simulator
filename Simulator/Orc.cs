@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using System.Text.Json.Serialization;
+
+namespace Simulator;
 
 public class Orc : Creature
 {
@@ -6,7 +8,7 @@ public class Orc : Creature
     private int huntCounter = 0;
 
     public int Rage { get => rage; init => rage = Validator.Limiter(value, 0, 10); }
-    public override int Power => 7 * Level + 3 * Rage;
+    [JsonIgnore] public override int Power => 7 * Level + 3 * Rage;
     public void Hunt()
     {
         huntCounter++;
@@ -23,7 +25,6 @@ public class Orc : Creature
     {
         Rage = rage;
     }
-    public override string Info => $"{Name} [{Level}][{Rage}]";
-
-    public override char Symbol => 'O';
+    [JsonIgnore] public override string Info => $"{Name} [{Level}][{Rage}]";
+    [JsonIgnore] public override char Symbol => 'O';
 }
